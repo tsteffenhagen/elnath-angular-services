@@ -10,7 +10,8 @@ app.service('CompanyService', ['$http', function($http) {
             method: 'GET',
             url: '/companies'
         }).then(function (response) {
-            console.log('response', response);      
+            console.log('response', response); 
+                 
             self.companies.list = response.data;      
         })
     }

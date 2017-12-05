@@ -19,10 +19,39 @@
 
 
 
-<ul>
-    <li ng-repeat="car in vm.cars.list">
-        {{car.nickname}} was born in {{car.year}} by {{car.name}} in the great country of {{car.country}}
-        <button ng-click="vm.deleteCar(car)">Delete</button>
-    </li>
-</ul>
 
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Year</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Nickname</th>
+        <th>Country of Origin</th>
+        <th>Delete</th>
+        <th>Edit</th>
+    </tr>
+</thead>
+<tbody>
+        <tr ng-repeat="car in vm.cars.list">
+            <td ng-hide="car.showedit">{{car.year}}</td>
+            <td ng-hide="car.showedit">{{car.name}}</td>
+            <td ng-hide="car.showedit">{{car.model}}</td>
+            <td ng-hide="car.showedit">{{car.nickname}}</td>
+            <td ng-hide="car.showedit">{{car.country}}</td>
+            <td ng-hide="car.showedit"><button ng-click="vm.deleteCar(car)">Delete</button></td>
+            <td ng-hide="car.showedit"><button ng-click="car.showedit = !car.showedit">Edit</td>
+
+            <td ng-show="car.showedit"><input type="text" ng-value={{car.year}}></td>
+            <td ng-show="car.showedit"><select ng-model="vm.newCar.company_id" ng-options="company.id as company.name for company in vm.companies.list track by company.id"></select></td>
+            <td ng-show="car.showedit"><input type="text" ng-value={{car.model}}></td>
+            <td ng-show="car.showedit"><input type="text" ng-value={{car.nickname}}></td>
+            <td ng-show="car.showedit"><input type="text" ng-value={{car.country}}></td>
+            <td ng-show="car.showedit"><button ng-click="vm.deleteCar(car)">Delete</button></td>
+            <td ng-show="car.showedit"><button ng-click="vm.editCar(car)">Edit</td>
+        </span>
+        </tr>
+</tbody>
+    <tr></tr>
+</table>

@@ -10,6 +10,7 @@ app.service('CarService', ['$http', function ($http) {
             url: '/cars'
         }).then(function (response) {
             console.log('response', response);
+            self.cars.list
             self.cars.list = response.data;
         })
     }
@@ -38,6 +39,18 @@ app.service('CarService', ['$http', function ($http) {
             self.getCars();
         });
     };
+    
+        self.editCar = function (CarToEdit) {
+            $http({
+                method: 'PUT',
+                url: '/cars',
+                data: CarToEdit
+            }).then(function (response) {
+                console.log('response', response);
+                self.getCars();
+                self.CarToEdit.showedit = !self.CarToEdit.showedit;
+            });
+        };
 
 
     self.getCars();

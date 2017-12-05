@@ -8,7 +8,7 @@ router.get('/', function (req, res) {
             console.log('there was an error connecting to the database', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
-            db.query(`SELECT car.*, company.name, company.country FROM car
+            db.query(`SELECT car.*, company.name, company.country, false AS show_edit FROM car
             JOIN company ON company.id = car.company_id;`, function(errorMakingQuery, result) {
                 done();
                 if(errorMakingQuery) {
