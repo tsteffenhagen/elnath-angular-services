@@ -1,2 +1,28 @@
 <h1>About Page</h1>
 <div>{{vm.message}}</div>
+
+<form>
+    <select ng-model="vm.newCar.company_id" ng-options="company.id as company.name for company in vm.companies.list track by company.id"></select>
+    <br>    
+    Car Nickname: <br>
+    <input type="text" placeholder="Honda..." ng-model="vm.newCar.nickname">
+    <br>
+    Car Make: <br>
+    <input type="text" placeholder="Honda..." ng-model="vm.newCar.make">
+    <br>
+    Car Year: <br>
+    <input type="number" placeholder="Bratislava..." ng-model="vm.newCar.year">
+    <br><br>
+    <button ng-click="vm.addNewCar(vm.newCar)">Submit</button>
+    {{vm.newCar}}
+</form>
+
+
+
+<ul>
+    <li ng-repeat="car in vm.cars.list">
+        {{car.nickname}} was born in {{car.year}} by {{car.name}} in the great country of {{car.country}}
+        <button ng-click="vm.deleteCar(car)">Delete</button>
+    </li>
+</ul>
+

@@ -1,2 +1,16 @@
 <h1>Home Page</h1>
-<div>{{vm.message}}</div>
+<form>
+    Company Name: <br>
+    <input type="text" placeholder="Honda..." ng-model="vm.newCompany.company">
+    <br>
+    Company Country: <br>
+    <input type="text" placeholder="Bratislava..." ng-model="vm.newCompany.country">
+    <br><br>
+    <button ng-click="vm.addNewCompany(vm.newCompany)">Submit</button>
+    {{vm.newCompany}}
+</form>
+<ul>
+    <li ng-repeat="company in vm.companies.list">
+        {{company.name}} is located in {{company.country}}
+    </li>
+</ul>
