@@ -7,4 +7,5 @@ app.controller('CarController',['CarService', 'CompanyService', function(CarServ
     self.companies = CompanyService.companies
     self.addNewCar = CarService.addNewCar
     self.deleteCar = CarService.deleteCar
+    self.editCar = CarService.editCar
 }]);

@@ -65,4 +65,27 @@ router.delete('/:id', function (req, res) {
     });
 });
 
+router.put('/', function (req, res) {
+    var carToEdit = req.body;
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query(`UPDATE car SET nickname=$1, model=$2, year=$3, company_id=$4
+            WHERE id=$5;`, 
+                        [carToEdit.nickname, carToEdit.model, carToEdit.year, carToEdit.company_id, carToEdit.id],
+                function (errorMakingDatabaseQuery, result) {
+                    done();
+                    if (errorMakingDatabaseQuery) {
+                        console.log('error', errorMakingDatabaseQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(200);
+                    }
+                });
+        }
+    });
+});
+
 module.exports = router;
